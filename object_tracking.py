@@ -24,15 +24,13 @@ elif tracker_type == 'CSRT':
 
 print(tracker)
 # load video
-video = cv2.VideoCapture('1.mp4')
+video = cv2.VideoCapture('src/1.mp4')
 
 frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fps = int(video.get(cv2.CAP_PROP_FPS))
 video_codec = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-prefix = 'recording/'+datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-basename = "object_track.mp4"
-video_output = cv2.VideoWriter('out.mp4', video_codec, fps, (frame_width, frame_height))
+video_output = cv2.VideoWriter('src/out.mp4', video_codec, fps, (frame_width, frame_height))
 
 if not video.isOpened():
     print('[ERROR] video file not loaded')
@@ -55,6 +53,7 @@ print('[INFO] tracker was initialized on ROI')
 # random generate a colour for bounding box
 colours = (randint(0, 255), randint(0, 255), randint(0, 255))
 # loop through all frames of video file
+i = -1
 while True:
     ok, frame = video.read()
     if not ok:
@@ -65,9 +64,13 @@ while True:
     # test print coordinates of predicted bounding box for all frames
     print(ok, bbox)
     if ok == True:
+        i += 1
         (x, y, w, h) = [int(v) for v in bbox]
         # use predicted bounding box coordinates to draw a rectangle
         cv2.rectangle(frame, (x, y), (x+w, y+h), colours, 3)
+        with open(f'output/{i}.txt', 'a') as f:
+            to_write = f'{x} {y} {x+w} {y+h}'
+            f.writelines(to_write)
         cv2.putText(frame, str(tracker_type), (10, 30), cv2.QT_FONT_NORMAL, 1, (255, 255, 255))
 
     else:
