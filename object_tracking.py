@@ -68,9 +68,10 @@ while True:
         (x, y, w, h) = [int(v) for v in bbox]
         # use predicted bounding box coordinates to draw a rectangle
         cv2.rectangle(frame, (x, y), (x+w, y+h), colours, 3)
-        with open(f'output/{i}.txt', 'a') as f:
-            to_write = f'{x} {y} {x+w} {y+h}'
+        with open(f'output/{i}.txt', 'w') as f:
+            to_write = f'0 {((x+w)/2)/frame_width} {((y+h)/2)/frame_height} {w/frame_width} {h/frame_height}'
             f.writelines(to_write)
+            cv2.imwrite(f'output/{i}.jpg', frame)
         cv2.putText(frame, str(tracker_type), (10, 30), cv2.QT_FONT_NORMAL, 1, (255, 255, 255))
 
     else:
