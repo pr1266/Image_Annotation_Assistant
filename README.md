@@ -34,4 +34,4 @@ python object_tracking.py
 
 - [@pr1266](https://github.com/pr1266) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/pr1266/Image_Annotation_Assistant/contributors) who participated in this project.
