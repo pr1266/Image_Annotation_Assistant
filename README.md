@@ -14,6 +14,8 @@
 
 ## 🧐 About <a name = "about"></a>
 ![GIF](https://github.com/pr1266/Image_Annotation_Assistant/blob/master/src/my_gif.gif)
+<br>
+<br>
 In this project, we implemented a object-tracker based annotation assistant using OpenCV. Output of this program is consist of two parts: 
 1 - seperated frames
 2 - .txt file that contains object coordinates in normalized YOLO format
